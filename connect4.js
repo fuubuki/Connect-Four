@@ -16,7 +16,6 @@ var board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   board = Array.from({length: HEIGHT}, () => {
     return new Array(WIDTH).fill(null);
   });
@@ -25,9 +24,7 @@ function makeBoard() {
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-  // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
   const htmlBoard = document.getElementById('board');
-  // TODO: add comment for this code
   var top = document.createElement("tr");
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
@@ -39,7 +36,6 @@ function makeHtmlBoard() {
   }
   htmlBoard.append(top);
 
-  // TODO: add comment for this code
   for (var y = 0; y < HEIGHT; y++) {
     const row = document.createElement("tr");
     for (var x = 0; x < WIDTH; x++) {
@@ -54,7 +50,6 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
   let openCell = null;
   for(let y = 0; y < HEIGHT; y++) {
     if(board[y][x] === null)
@@ -66,7 +61,6 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
   const piece = document.createElement('div');
   piece.classList.add('piece');
   if(currPlayer === 1)
@@ -88,7 +82,6 @@ function switchCurrPlayer() {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  // TODO: pop up alert message
   alert(msg);
 }
 
@@ -105,7 +98,6 @@ function handleClick(evt) {
   }
 
   // place piece in board and add to HTML table
-  // TODO: add line to update in-memory board
   placeInTable(y, x);
   board[y][x] = currPlayer;
 
@@ -115,14 +107,12 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
   let tie = board.every(x => x.every(y => y !== null));
   if(tie === true) {
     endGame('Tie Game');
   }
 
   // switch players
-  // TODO: switch currPlayer 1 <-> 2 
   switchCurrPlayer();
 }
 
@@ -143,8 +133,6 @@ function checkForWin() {
         board[y][x] === currPlayer
     );
   }
-
-  // TODO: read and understand this code. Add comments to help you.
 
   for (var y = 0; y < HEIGHT; y++) {
     for (var x = 0; x < WIDTH; x++) {
